@@ -1,4 +1,4 @@
-package com.bootcamp.personal.passive.fixedtermaccount;
+package com.bootcamp.personal.passive.fixedtermaccount.controlller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("personal/passive/current_account/test")
+@RequestMapping("personal/passive/saving_account/test")
 @Tag(name = "CI/CD API Test", description = "CI/CD Test with Github Actions")
 @CrossOrigin( origins = {"*"})
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class GenericController {
         return Mono.just(
                 ResponseEntity.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(Flux.just("Hola, Generic Controller FROM PerPas current-account with Cors *"))
+                        .body(Flux.just("Hola, Generic Controller FROM PerPas saving-account v1.3. with Cors *"))
         );
     }
 

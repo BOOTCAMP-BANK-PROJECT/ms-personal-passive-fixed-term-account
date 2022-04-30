@@ -10,33 +10,27 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 
 import java.util.logging.Logger;
 
 @OpenAPIDefinition(info = @Info(
 		title = "OpenAPI Documentation",
 		version = "1.0.0",
-		description = "OpenAPI Fixed Term Account Application Documentation v1.0.0",
-		contact = @Contact(name = "Roberto Jaison", email = "jaisonjv7@gmail.com", url = ""),
+		description = "OpenAPI Current Account Application Documentation v1.0.0",
+		contact = @Contact(name = "Samuel Luis", email = "samuel@company.com", url = "https://www.linkedin.com/in/samuel14luis/"),
 		license = @License(name = "MIT License", url = "https://choosealicense.com/licenses/mit/")
 ))
 @EnableEurekaClient
 @SpringBootApplication
-public class FixedTermAccountApplication implements CommandLineRunner {
+public class CurrentAccountApplication implements CommandLineRunner {
 
-	private static final Logger logger = Logger.getLogger(FixedTermAccountApplication.class.toString());
-	
-	@Autowired
-	private ReactiveMongoTemplate mongoTemplate;
+	private static final Logger logger = Logger.getLogger(CurrentAccountApplication.class.toString());
 
 	@Autowired
 	private Environment env;
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		mongoTemplate.dropCollection("personalpassivefixedtermaccount").subscribe();
 
 		//logger.log(Level.INFO, env.getProperty("spring.application.name"));
 		logger.info("Java version: " + env.getProperty("java.version"));
@@ -46,7 +40,7 @@ public class FixedTermAccountApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(FixedTermAccountApplication.class, args);
+		SpringApplication.run(CurrentAccountApplication.class, args);
 	}
 
 }

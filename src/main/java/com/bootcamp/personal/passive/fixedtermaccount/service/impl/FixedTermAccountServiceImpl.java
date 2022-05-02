@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class FixedTermAccountServiceImpl implements FixedTermAccountService {
@@ -38,7 +40,12 @@ public class FixedTermAccountServiceImpl implements FixedTermAccountService {
                             "save.onErrorResume"
                     );
                 })
-                .switchIfEmpty(repository.save(fixedTermAccount))
+                .switchIfEmpty(Mono.defer(() -> {
+                    fixedTermAccount.setId(null);
+                    fixedTermAccount.setInsertionDate(new Date());
+                    return repository.save(fixedTermAccount);
+                     }
+                ))
                 .onErrorResume(e -> Mono.error(e)).cast(FixedTermAccount.class);
     }
 
